@@ -1,0 +1,69 @@
+.content {
+  display: grid;
+  flex-direction: row;
+  gap: 2rem;
+}
+
+.wrapper {
+  max-width: 100%;
+  margin: 2rem auto;
+  padding: 0 1rem;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+}
+
+.divTitle {
+  max-width: 100%;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.title{
+  color: var(--green-500);
+  font-size: 26px;
+}
+
+.scoreBoard {
+  max-width: 25rem;
+  height: 10.38rem;
+
+  border-radius: 0.625rem;
+  background-color: var(--gray-100);
+}
+
+.card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.matchInfos {
+  display: inline-grid;
+  grid-template-columns: 1fr;
+  gap: .5rem;
+  align-items: flex-start;
+  margin-right: 2rem;
+  margin-bottom: 2rem;
+}
+
+.textInfos {
+  font-size: 20px;
+}
+
+.buttonDiv {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 1rem 0 1rem;
+}
+
+.buttonStyle {
+  padding: 1rem;
+  background-color: var(--green-100);
+  border: none;
+  border-radius: 10px;
+  color: var(--white)
+}
