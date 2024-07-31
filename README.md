@@ -21,12 +21,12 @@ The project code contains the folder `src` where we have the files about the mai
 │   │
 │   ├── App.module.css   # File with css definitions.
 │   ├── App.tsx          # File with the design and some logic structure for the exercise.
-│   ├── global.css         # File with global css definitions.
-│   ├── main.jsx           # File with the structer to call the file App.tsx and execute our webpage.
+│   ├── global.css       # File with global css definitions.
+│   ├── main.jsx         # File with the structer to call the file App.tsx and execute our webpage.
 │
 ├── package.json
-├── vite.config.js         # Vite file
-├── index.html             # Html file where we have the id root for calling the main.jsx
+├── vite.config.js       # Vite file
+├── index.html           # Html file where we have the id root for calling the main.jsx
 └── .gitignore
 ```
 
