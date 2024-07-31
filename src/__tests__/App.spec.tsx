@@ -7,7 +7,7 @@ describe('App Component', () => {
     render(<App />);
   });
 
-  test('start the when click on "Start Game"', () => {
+  test('start the game when click on "Start Game"', () => {
     const startButton = screen.getByTestId('start-game-1');
     fireEvent.click(startButton);
 

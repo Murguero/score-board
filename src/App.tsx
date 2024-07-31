@@ -56,6 +56,15 @@ interface ILiveMatches {
   showScore: boolean;
 }
 
+interface IGenericProps {
+  id: number;
+}
+
+interface IGetRandomNumberProps {
+  maxValue: number;
+  minValue: number;
+}
+
 export function App() {
   const [liveMatches, setLiveMatches] = useState<ILiveMatches[]>([]);
   const [summaryMatches, setSummaryMatches] = useState<ILiveMatches[]>([]);
@@ -64,12 +73,12 @@ export function App() {
     setLiveMatches(matches);
   }, []);
 
-  const getRandomNumber = (maxValue: number, minValue: number) => {
+  const getRandomNumber = ({ maxValue, minValue }: IGetRandomNumberProps) => {
     return Math.floor(Math.random() * (maxValue - minValue + 1)) + minValue;
   };
 
   const startGame = useCallback(
-    (id: number) => {
+    ({ id }: IGenericProps) => {
       const updateMatch = liveMatches.map((match) => {
         if (match.id === id && !match.showScore) {
           match.showScore = true;
@@ -83,11 +92,17 @@ export function App() {
   );
 
   const updateScore = useCallback(
-    (id: number) => {
+    ({ id }: IGenericProps) => {
       const updateMatch = liveMatches.map((match) => {
         if (match.id === id && match.showScore) {
-          match.homeTeamScore = getRandomNumber(match.homeTeamScore + 1, match.homeTeamScore);
-          match.awayTeamScore = getRandomNumber(match.awayTeamScore + 1, match.awayTeamScore);
+          match.homeTeamScore = getRandomNumber({
+            maxValue: match.homeTeamScore + 1,
+            minValue: match.homeTeamScore,
+          });
+          match.awayTeamScore = getRandomNumber({
+            maxValue: match.awayTeamScore + 1,
+            minValue: match.awayTeamScore,
+          });
         }
         return match;
       });
@@ -98,8 +113,8 @@ export function App() {
   );
 
   const finishMatch = useCallback(
-    (id: number) => {
-      const matchIndex = liveMatches.findIndex((match) => match.id === id);
+    ({ id }: IGenericProps) => {
+      const matchIndex = liveMatches.findIndex((match) => match.id === id && match.showScore);
       if (matchIndex > -1) {
         const newSummaryMatches = summaryMatches;
 
@@ -148,21 +163,21 @@ export function App() {
                   <button
                     data-testid={`start-game-${match.id}`}
                     className={styles.buttonStyle}
-                    onClick={() => startGame(match.id)}
+                    onClick={() => startGame({ id: match.id })}
                   >
                     Start Game
                   </button>
                   <button
                     data-testid={`update-score-${match.id}`}
                     className={styles.buttonStyle}
-                    onClick={() => updateScore(match.id)}
+                    onClick={() => updateScore({ id: match.id })}
                   >
                     Update Score
                   </button>
                   <button
                     data-testid={`finish-game-${match.id}`}
                     className={styles.buttonStyle}
-                    onClick={() => finishMatch(match.id)}
+                    onClick={() => finishMatch({ id: match.id })}
                   >
                     Finish Game
                   </button>
